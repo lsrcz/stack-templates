@@ -22,7 +22,7 @@ description:         Please see the README on GitHub at <https://github.com/{{gi
 
 dependencies:
 - base >= 4.7 && < 5
-- grisette >= 0.5.0.1 && < 0.6
+- grisette >= 0.10 && < 0.11
 
 ghc-options:
 - -Wall
@@ -83,7 +83,7 @@ testZ3 = do
   let x = "x" :: SymInteger
   let y = "y" :: SymInteger
   let constraint = x + y .== 7
-  m <- solve (precise z3) constraint
+  m <- solve z3 constraint
   case m of
     Left _ -> do
       error "The solver is malfunctioning."
@@ -195,7 +195,7 @@ packages:
 #   commit: e7b331f14bcffb8367cd58fbfc8b40ec7642100a
 #
 extra-deps:
-- grisette-0.5.0.1
+- grisette-0.10.0.0
 
 # Override default flag values for local packages and extra-deps
 # flags: {}
