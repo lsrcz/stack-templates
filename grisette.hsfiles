@@ -85,10 +85,10 @@ testZ3 = do
   let constraint = x + y .== 7
   m <- solve z3 constraint
   case m of
-    Left _ -> do
-      error "The solver is malfunctioning."
+    Left err -> do
+      error $ "The solver is malfunctioning: \n" ++ show err
     Right model -> do
-      when (evaluateSymToCon model (x + y) /= (7 :: Integer)) $ error "The solver is malfunctioning"
+      when (evalSymToCon model (x + y) /= (7 :: Integer)) $ error "The solver is malfunctioning"
       putStrLn "Congratulations! You have a working Grisette and solver installation."
 
 {-# START_FILE app/Main.hs #-}
